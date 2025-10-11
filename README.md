@@ -27,7 +27,7 @@ AIM => Design Reliable, Scalable, Maintainable systems, highly available(minimiz
 
 - API(Application programming interface) => Client sends a req to BFF server(API server) which has API gateway
 
-```css
+```
 Client
   ↓
 [ API Gateway ]
