@@ -21,7 +21,7 @@ AIM => Design Reliable, Scalable, Maintainable systems, highly available(minimiz
    
 - Reverse-Proxy => Client does not know who the server is. A reverse proxy sits in front of one or more servers(in front of each microservice) and acts on behalf of the servers. Clients send requests to the reverse proxy, which then forwards them to the appropriate backend server. `Need` => 1. Load balancing across multiple servers(maybe multiple servers of same service) || 2. Caching responses to reduce load on backend || 3. SSL termination (handling HTTPS encryption centrally) || 4. Security / DDoS protection (hides real server IPs) || 5. Basic Routing (e.g., different microservices or paths) || 6. Rate limiting || 7. Monitoring & Logging || zero-trust networking(Each proxy validates internal tokens before forwarding traffic deeper.)
 
-- API Gateway => Authenticates the user (JWT, OAuth) | Checks rate limits | Decides which backend to send to (routing) | SSL termination | Handles cross-cutting concerns (logging, tracing) | Might transform protocols (HTTP → gRPC) | Might handle caching
+- API Gateway => Authenticates the user (JWT, OAuth) | Checks rate limits | Decides which backend to send to (routing) | SSL termination | Handles cross-cutting concerns (logging, tracing) | Might transform protocols (HTTP → gRPC) | Might handle caching. True IP masking happens only for backend services; clients still see the gateway’s IP. Some advanced setups use CDNs in front of the gateway for even more obfuscation and DDoS protection.
 
 - BFF => handles business + frontend-specific stuff. Tailored backend layer for each frontend (mobile, web, TV). The BFF (Backend for Frontend) exists because each frontend (web, TV) needs different combinations and shapes of data.
 
@@ -32,7 +32,12 @@ AIM => Design Reliable, Scalable, Maintainable systems, highly available(minimiz
 - API(Application programming interface) => Client sends a req to BFF server(API server) which has API gateway
 
 ```css
-Client → [ API Gateway ] → [ BFF(optional) ] → [ Reverse Proxy / Load Balancer ] →  [ Microservice Cluster (many instances) ]
-
+Client (App/Web)
+    │
+    ▼
+[CDN Edge Server]
+    │
+    ▼
+[API Gateway] → [ BFF(optional) ] → [ Reverse Proxy / Load Balancer ] →  [ Microservice Cluster (many instances) ] → DB
 ```
 
