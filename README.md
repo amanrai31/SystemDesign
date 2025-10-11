@@ -15,7 +15,7 @@ AIM => Design Reliable, Scalable, Maintainable systems, highly available(minimiz
 - `Replication` | `Sharding - Horizontal/Vertical Partitioning` | `Caching` | `Denormalization` | `CAP Theorem`
 - `Blob Storage` | `CDN` | `MicroServices` | `MessageQueues` | `RateLimiting` | `API Gateways` | `Idempotency`
 
-- Client-Server architecture => Client(website/App etc) sent request to server(waiting for requests), REQ made by client 1st goes to `DNS Server` for `IP resolution`, then the request is `proxied` and goes to `BFF`(Backend for frontend) Server(through reverse-proxy/loadBalancer maybe). ReverseProxy server OR BFF server routes the request to the desired microservice through API Gateway
+- Client-Server architecture => Client(website/App etc) sent request to server(waiting for requests), REQ made by client 1st goes to `DNS Server` for `IP resolution`, then the request is `proxied` and goes to API Gateway(Zuul / Envoy / Kong) then to `BFF`(Backend for frontend) Server. ReverseProxy server OR BFF server routes the request to the desired microservice through API Gateway
 
 - PROXY/ Forward PROXY => Server do not know who the client is. `Need` => 1. Hide client identity (IP masking) || 2. Control or filter outgoing traffic (e.g., company network restrictions) || 3. Cache responses for faster access || 4. Monitor usage. A VPN acts as a type of forward proxy.
    
@@ -26,3 +26,16 @@ AIM => Design Reliable, Scalable, Maintainable systems, highly available(minimiz
 - HTTP/HTTPS => Client & server communicate through a set of rules, client sends a REQ which contains `headers` which has info about client like REQ type, browser type, cookies, REQ Body(in POST req) then the server sends RES which contains data or an error if something goes wrong. The RES is usually in JSON OR XML format. HTTP sends data as plain text(without encryption) but HTTPS encrypts data using SSL or TLS protocol. BUT `HTTP does not define :` 1. How req should be structured | 2. What format res should be in | 3. How diff clients should interact with server. Here we have APIs.
 
 - API(Application programming interface) => Client sends a req to BFF server(API server) which has API gateway
+
+```css
+Client
+  ↓
+[ API Gateway ]
+  ↓
+[ BFF Layer ]
+  ↓
+[ Reverse Proxy / Load Balancer ]
+  ↓
+[ Microservice Cluster (many instances) ]
+
+```
