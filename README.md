@@ -25,7 +25,9 @@ AIM => Design Reliable, Scalable, Maintainable systems, highly available(minimiz
 
 - BFF => handles business + frontend-specific stuff. Tailored backend layer for each frontend (mobile, web, TV). The BFF (Backend for Frontend) exists because each frontend (web, TV) needs different combinations and shapes of data.
 
-**NOTE :** Every API Gateway is a Reverse Proxy, but not every Reverse Proxy is an API Gateway. The API Gateway and BFF handle north-south traffic. But reverse proxies in front of microservices handle east-west traffic
+**NOTE :** Every API Gateway is a Reverse Proxy, but not every Reverse Proxy is an API Gateway. The API Gateway and BFF handle north-south traffic. But reverse proxies in front of microservices handle east-west traffic.
+
+**NOTE :** In large architecture, every service sits behind a load balancer let it be CDN, API Gateway, BFF, Microservices etc.
 
 - HTTP/HTTPS => Client & server communicate through a set of rules, client sends a REQ which contains `headers` which has info about client like REQ type, browser type, cookies, REQ Body(in POST req) then the server sends RES which contains data or an error if something goes wrong. The RES is usually in JSON OR XML format. HTTP sends data as plain text(without encryption) but HTTPS encrypts data using SSL or TLS protocol. BUT `HTTP does not define :` 1. How req should be structured | 2. What format res should be in | 3. How diff clients should interact with server. Here we have APIs.
 
