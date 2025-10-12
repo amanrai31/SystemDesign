@@ -11,15 +11,15 @@ AIM => Design Reliable, Scalable, Maintainable systems, highly available(minimiz
 
 - `Client-Server architecture` | `IP Address` | `DNS` | `Proxy/reverse Proxy` | `Latency`
 - `HTTP/HTTPS` | `APIs` | `Rest API` | `GraphQL` | `gRPC` | `Websockets` | `WebHooks` | `WebRTC`
-- `DB` | `SQL/noSQL` | `Vertical/Horizonal Scaling` | `Load Balancers` | `DB Indexing` 
+- `DB` | `SQL/noSQL` | `Vertical/Horizontal Scaling` | `Load Balancers` | `DB Indexing` 
 - `Replication` | `Sharding - Horizontal/Vertical Partitioning` | `Caching` | `Denormalization` | `CAP Theorem`
 - `Blob Storage` | `CDN` | `MicroServices` | `MessageQueues` | `RateLimiting` | `API Gateways` | `Idempotency`
 
-- Client-Server architecture => Client(website/App etc) sent request to server(waiting for requests), REQ made by client 1st goes to `DNS Server` for `IP resolution`, then the request is `proxied` and goes to API Gateway(Zuul / Envoy / Kong) then to `BFF`(Backend for frontend) Server. ReverseProxy server OR BFF server routes the request to the desired microservice through API Gateway
+- Client-Server architecture => Client(website/App etc) sent request to server(waiting for requests), REQ made by client 1st goes to `DNS Server` for `IP resolution`, then the request is `proxied` and goes CDN Server(Cloudflare or Akamai) then API Gateway(Zuul / Envoy / Kong), API Gateway redirects to respective `BFF`(Backend for frontend) Server(s). Each BE Server receives the request and calls multiple microservices through API Gateway
 
 - PROXY/ Forward PROXY => Server do not know who the client is. `Need` => 1. Hide client identity (IP masking) || 2. Control or filter outgoing traffic (e.g., company network restrictions) || 3. Cache responses for faster access || 4. Monitor usage. A VPN acts as a type of forward proxy.
    
-- Reverse-Proxy => Client does not know who the server is. A reverse proxy sits in front of one or more servers(in front of each microservice) and acts on behalf of the servers. Clients send requests to the reverse proxy, which then forwards them to the appropriate backend server. `Need` => 1. Load balancing across multiple servers(maybe multiple servers of same service) || 2. Caching responses to reduce load on backend || 3. SSL termination (handling HTTPS encryption centrally) || 4. Security / DDoS protection (hides real server IPs) || 5. Basic Routing (e.g., different microservices or paths) || 6. Rate limiting || 7. Monitoring & Logging || zero-trust networking(Each proxy validates internal tokens before forwarding traffic deeper.)
+- Reverse-Proxy => Client does not know who the server is. A reverse proxy sits in front of one or more servers(in front of each microservice) and acts on behalf of the servers. Clients send requests to the reverse proxy, which then forwards them to the appropriate backend server. `Need` => 1. Load balancing across multiple servers(maybe multiple servers of the same service) || 2. Caching responses to reduce load on backend || 3. SSL termination (handling HTTPS encryption centrally) || 4. Security / DDoS protection (hides real server IPs) || 5. Basic Routing (e.g., different microservices or paths) || 6. Rate limiting || 7. Monitoring & Logging || zero-trust networking(Each proxy validates internal tokens before forwarding traffic deeper.)
 
 - API Gateway => Authenticates the user (JWT, OAuth) | Checks rate limits | Decides which backend to send to (routing) | SSL termination | Handles cross-cutting concerns (logging, tracing) | Might transform protocols (HTTP → gRPC) | Might handle caching. True IP masking happens only for backend services; clients still see the gateway’s IP. Some advanced setups use CDNs in front of the gateway for even more obfuscation and DDoS protection.
 
