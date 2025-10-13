@@ -15,7 +15,7 @@ AIM => Design Reliable, Scalable, Maintainable systems, highly available(minimiz
 - `Replication` | `Sharding - Horizontal/Vertical Partitioning` | `Caching` | `Denormalization` | `CAP Theorem`
 - `Blob Storage` | `CDN` | `MicroServices` | `MessageQueues` | `RateLimiting` | `API Gateways` | `Idempotency`
 
-- Client-Server architecture => Client(website/App etc) sent request to server(waiting for requests), REQ made by client 1st goes to `DNS Server` for `IP resolution`, then the request is `proxied` and goes CDN Server(Cloudflare or Akamai) then API Gateway(Zuul / Envoy / Kong), API Gateway redirects to respective `BFF`(Backend for frontend) Server(s). Each BE Server receives the request and calls multiple microservices through API Gateway
+- Client-Server architecture => Client(website/App etc) sent request to server(waiting for requests), REQ made by client 1st `proxied`(if on pvt/corporate n/w) then goes to `DNS Server` for `IP resolution`, and goes CDN Server(1st proxy if publuc n/w)then forwarded to API Gateway(Zuul / Envoy / Kong), API Gateway redirects to respective `BFF`(Backend for frontend) Server(s). Each BE Server receives the request and calls multiple microservices & combine the response then sends to client via API Gateway. Each MS sits behind LB & each service has its own DB & cache.
 
 - PROXY/ Forward PROXY => Server do not know who the client is. `Need` => 1. Hide client identity (IP masking) || 2. Control or filter outgoing traffic (e.g., company network restrictions) || 3. Cache responses for faster access || 4. Monitor usage. A VPN acts as a type of forward proxy.
    
@@ -27,7 +27,7 @@ AIM => Design Reliable, Scalable, Maintainable systems, highly available(minimiz
 
 **NOTE :** Every API Gateway is a Reverse Proxy, but not every Reverse Proxy is an API Gateway. The API Gateway and BFF handle north-south traffic. But reverse proxies in front of microservices handle east-west traffic.
 
-**NOTE :** In large architecture, every service sits behind a load balancer let it be CDN, API Gateway, BFF, Microservices etc.
+**NOTE:** In large architectures, every service, whether CDN, API Gateway, BFF, Microservices, etc., sits behind a load balancer.
 
 - HTTP/HTTPS => Client & server communicate through a set of rules, client sends a REQ which contains `headers` which has info about client like REQ type, browser type, cookies, REQ Body(in POST req) then the server sends RES which contains data or an error if something goes wrong. The RES is usually in JSON OR XML format. HTTP sends data as plain text(without encryption) but HTTPS encrypts data using SSL or TLS protocol. BUT `HTTP does not define :` 1. How req should be structured | 2. What format res should be in | 3. How diff clients should interact with server. Here we have APIs.
 
