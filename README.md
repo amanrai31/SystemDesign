@@ -2,6 +2,8 @@
 
 Resource => https://www.youtube.com/watch?v=s9Qh9fWeOAk&t=56s  |  https://algomaster.io/learn/system-design/what-is-system-design
 
+Resource => https://github.com/ashishps1?tab=repositories
+
 AIM => Design Reliable, Scalable, Maintainable systems, highly available(minimizing downtime).
 
 - Data-intensive applications => the quantity of data, the complexity of data, or the speed at which it is changing
