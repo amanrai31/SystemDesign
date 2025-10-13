@@ -45,3 +45,9 @@ Client (App/Web)
 [API Gateway] → [ BFF(optional) ] → [ Reverse Proxy / Load Balancer ] →  [ Microservice Cluster (many instances) ] → DB
 ```
 
+------------
+
+
+## 7 Techniques to protect API
+
+- rate limiting, CORS, SQL & noSQL injection, firewall, VPN(on server side too), CSRF(cross site request forgery), XSS(cross site scripting)
