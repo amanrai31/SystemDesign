@@ -1,8 +1,10 @@
 # SystemDesign
 
-Resource => https://www.youtube.com/watch?v=s9Qh9fWeOAk&t=56s  |  https://algomaster.io/learn/system-design/what-is-system-design
+### Resource 
 
-Resource => https://github.com/ashishps1?tab=repositories
+https://www.youtube.com/watch?v=s9Qh9fWeOAk&t=56s
+https://algomaster.io/learn/system-design/what-is-system-design
+https://github.com/ashishps1?tab=repositories
 
 AIM => Design Reliable, Scalable, Maintainable systems, highly available(minimizing downtime).
 
