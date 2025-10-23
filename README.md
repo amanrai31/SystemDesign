@@ -33,8 +33,6 @@ AIM => Design Reliable, Scalable, Maintainable systems, highly available(minimiz
 
 **NOTE :** Every API Gateway is a Reverse Proxy, but not every Reverse Proxy is an API Gateway. The API Gateway and BFF handle north-south traffic. But reverse proxies in front of microservices handle east-west traffic.
 
-**NOTE:** In large architectures, every service, whether CDN, API Gateway, BFF, Microservices, etc., sits behind a load balancer. LBs also work as proxy/reverse-proxy.
-
 ```css
 Client (App/Web)
     │
@@ -45,23 +43,23 @@ Client (App/Web)
 [API Gateway](proxy) → [ BFF(optional) ] → [ Reverse Proxy / Load Balancer ] →  [ Microservice Cluster (many instances) ] → DB
 ```
 
-- `Request path` =>  The request path depends on request type => 1. Static Content: Backend → CDN Cache → Browser | 2. Dynamic Content (cacheable - e.g., search results): Backend → CDN Cache (short TTL) → Browser | Dynamic Content (not cacheable - e.g., user profile): Backend → Browser directly (skips CDN) | Real-time Content (e.g., live chat, stock prices): Backend → WebSocket → Browser directly. `Response header control whether to cache or not and also the cache life`
+- `Request path` =>  The request path depends on request type => 1. Static Content: Backend → CDN Cache → Browser || 2. Dynamic Content (cacheable - e.g., search results): Backend → CDN Cache (short TTL) → Browser || 3. Dynamic Content (not cacheable - e.g., user profile): Backend → Browser directly (skips CDN) || 4. Real-time Content (e.g., live chat, stock prices): Backend → WebSocket → Browser directly. `Response header controls whether to cache or not and also the cache life`
 
-- `Response path example` => You search for hotels in Airbnb => Response: JSON with 30 property listings : `Images: Sent to CDN for future requests` | `Search results JSON: Sent directly to browser (not cached)` | `Property thumbnails: Cached in CDN (reused across users)`. **Why not cache always through CDN*** - **User-specific data**: Your bookings are different from someone else's | **Real-time accuracy of bookings** | **Caching user profiles at edge servers is risky**
+- `Response path example` => You search for hotels in Airbnb => Response: JSON with 30 property listings: `Images: Sent to CDN for future requests` | `Search results JSON: Sent directly to browser (not cached)` | `Property thumbnails: Cached in CDN (reused across users)`. **Why not cache always through CDN*** - **User-specific data**: Your bookings are different from someone else's | **Real-time accuracy of bookings** | **Caching user profiles at edge servers is risky**
 
 - `HTTP/HTTPS` => Client & server communicate through a set of rules, client sends a REQ which contains `headers` which has info about client like REQ type, browser type, cookies, REQ `Body`(in POST req) then the server sends RES which contains data or an error if something goes wrong. The RES is usually in JSON OR XML format. HTTP sends data as plain text(without encryption) but HTTPS encrypts data using SSL or TLS protocol. BUT `HTTP does not define :` 1. How req should be structured | 2. What format res should be in | 3. How diff clients should interact with server. Here we have APIs.
 
-- `API(Application programming interface)` => API let client communicate with server. APIs are hosted on a server(apiGateway, BFF or other services) process the req and interact with DB or other services & prepares a response & send back to client in JSON or XML format. 2 most comman API type are => `rest` & `graphQL`. Some other popular API types - `gRPC`, `Websockets`, `WebHooks`, `WebRTC`
+- `API(Application programming interface)` => API let client communicate with server. APIs are hosted on a server(apiGateway, BFF or other services) process the req and interact with DB or other services & prepare a response & send back to client in JSON or XML format. 2 most comman API type are => `rest` & `graphQL`. Some other popular API types - `gRPC`, `Websockets`, `WebHooks`, `WebRTC`
 
 - `DBs` => Servers that are used to store & retrieve data. `SQL` - consistency, relational | `noSQL` - scalable, high-availability, flexible schema
 
 - `Vertical & horizontal scaling of Application Servers` => `VS` - Scaling a existing server by adding more CPU, RAM, Storage (Expensive & single point of failure) | `HS` => Distributes the workload among multiple servers (We need load balancer here)
 
-- `LoadBalancer` => Sits b/w client & server. Uses LB algorithms like Round-Robin, least connections, IP Hashing
+- `LoadBalancer` => In large architectures, every service, whether CDN, API Gateway, BFF, Microservices, etc., sits behind a load balancer. LBs also work as proxy/reverse-proxy. Uses LB algorithms like Round-Robin, least connections, IP Hashing
 
 **NOTE :** Now we have scaled application server but as traffic grows, the volume of data also increases. We have to index DB & scale DB - `DB scaling`
 
-- `Indexing of DB` => It works the same way as index of a book does. It speeds up the `read queries`. Helps DB to quickly locate the required data without scanning the whole table. Stores the `column value along with pointer` to actual data rows in the table. Indexing sppeds read but slow down write(Since index need to be updated whenever data changes) that's why Index created on frequently queried coloumns.
+- `Indexing of DB` => It works the same way as index of a book does. It speeds up the `read queries`. Helps DB to quickly locate the required data without scanning the whole table. Stores the `column value along with pointer` to actual data rows in the table. Indexing speeds read but slow down write(Since index need to be updated whenever data changes) that's why Index created on frequently queried columns.
 
 - What will happen when read request grows huge - `Replication` => Make multiple read replicas & 1 or more write replicas (primary replica). When data is witten to primary DB (Write replica), it gets copied to all read replicas to sync them. It solves the read traffic & ensures high-availability as if write replica goes down the we can make one of the read replicas as write replica.
 
