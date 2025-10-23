@@ -74,7 +74,14 @@ In distributed systems where we have multiple servers, DBs over multiple data ce
 - `CAP Theorem` => No distributed system can achive `Consistency`, `Availability` & `Partion tolerance` all at the same time
 
 - `Blob Storage` => Traditional DBs are not designed to store large, unstructured files efficiently. Files like images, videos, pdfs are stored inside logical containers/buckets. in blob storage like amazon s3, each 
-file gets a unique URL 
+file gets a unique URL.
+
+- Syncronus comm(waiting for immediate res) do not always scale well, `message queue` enables the services to comm `asynchronously` that allows req to process without blocking other operations. MQ de-couple services & improve scalability. Producer put data in MQ & consumer comsumes it asynchronously.
+
+- `Rate-limiting` => We assign a quota to particular IP & put a cap like 100req/sec. Rate-limiting algo - `Fixed window`, `sliding window`, `Token bucket`
+
+- `Idempotency` => Ensures that repeated requests produce the same result, Each req is assigned a unique ID before processing the system check if req is already handled if yes then it ignores the duplicate req.
+
 ------------
 
 
