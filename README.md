@@ -2,20 +2,35 @@
 
 ### Resource 
 
-https://www.youtube.com/watch?v=s9Qh9fWeOAk&t=56s || https://www.youtube.com/watch?v=l3X1t3kpmwY
+https://www.youtube.com/watch?v=s9Qh9fWeOAk&t=56s || https://github.com/ashishps1/awesome-system-design-resources
 
 https://algomaster.io/learn/system-design/what-is-system-design
 
 https://github.com/ashishps1?tab=repositories
+
+LLD => https://algomaster.io/learn/lld/what-is-lld
+
+-----
 
 AIM => Design Reliable, Scalable, Maintainable systems, highly available(minimizing downtime).
 
 - Data-intensive applications => the quantity of data, the complexity of data, or the speed at which it is changing
 - Compute-intensive => where CPU cycles are the bottleneck
 
+#### System design involves figuring out
+
+`1. What are requirements of the system? 2. Who are users & how many? 3. What component do we need in our design? 4. How these components should be organised, 5. How to make the system scalable? 6. How to make the system reliable? 7. How to make the system maintainable? `
+
+#### Key concepts of system design
+
+`1. Scalability 2. Latency vs Throughput 3. CAP Theorem 4. ACID Transaction 5. Consistent Hashing 6. Rate limiting 7. API Design 8. Strong & Eventual consistency 9. Sync vs Async communication 10. REST VS gRPC 11. Batch processing vs Stream Processing 12. Fault tolerance 13. Consensus Algorithm 14. Gossip Protocol 15. Service Discovery 16. Disaster Recovery 17. Distributed Tracing `
+
+#### In interviews =>
+`1. Clarify requirements 2. Capacity Estimation 3. High-Level design 4. DB Design 5. API Design 6. Dive into key components 7. Address key issues: Scalability, Reliability`
+
  # Overview => 30 Most important system design concepts =>
 
-- `Client-Server architecture` | `IP Address` | `DNS` | `Proxy/reverse Proxy` | `Latency`
+- `Client-Server architecture` | `IP Address` | `DNS` | `Proxy/reverse Proxy` | `Latency/ThroughPut`
 - `HTTP/HTTPS` | `APIs` | `Rest API` | `GraphQL` | `gRPC` | `Websockets` | `WebHooks` | `WebRTC`
 - `DB` | `SQL/noSQL` | `Vertical/Horizontal Scaling` | `Load Balancers` | `DB Indexing` 
 - `Replication` | `Sharding - Horizontal/Vertical Partitioning` | `Caching` | `Denormalization` | `CAP Theorem`
