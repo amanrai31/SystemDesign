@@ -2,7 +2,7 @@
 
 ### Resource 
 
-https://www.youtube.com/watch?v=s9Qh9fWeOAk&t=56s
+https://www.youtube.com/watch?v=s9Qh9fWeOAk&t=56s || https://www.youtube.com/watch?v=l3X1t3kpmwY
 
 https://algomaster.io/learn/system-design/what-is-system-design
 
