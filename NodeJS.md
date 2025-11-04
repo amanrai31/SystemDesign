@@ -93,3 +93,16 @@ Once core is done: `Add CORS -> Rate limiting -> Helmet for security -> Swagger 
 Options: `Free: Render, Railway, Vercel (backend)` || `Paid: AWS, GCP, Azure, DigitalOcean`
 
 🎯 Goal → expose your API publicly.
+
+-----
+
+# REST
+
+REST (Representational State Transfer) = An architecture style for designing web services that follow these principles:
+
+- Use HTTP methods (GET, POST, PUT, DELETE)
+- Work with resources (users, products, etc.)
+- Use JSON for data exchange
+- Are stateless (no session data stored on server)
+
+**NOTE :** `Request → Route → Middleware → Controller → Model → DB → Response`
