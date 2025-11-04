@@ -31,15 +31,7 @@ For each resource, define routes in REST format: `Action	Method	Endpoint	Descrip
 
 Choose DB: MongoDB (NoSQL, flexible), PostgreSQL/MySQL (SQL, relational)
 
-Example for MongoDB:
-
-User: name, email, password, balance
-
-Stock: symbol, price, quantity
-
-Order: userId, stockId, type(buy/sell), qty, price
-
-Portfolio: userId, stocks[]
+Example for MongoDB: `User: name, email, password, balance` | `Stock: symbol, price, quantity` | `Order: userId, stockId, type(buy/sell), qty, price` | `Portfolio: userId, stocks[]`
 
 🎯 Goal → clear schema & relations.
 
@@ -90,14 +82,14 @@ Use Postman or Thunder Client: Test each route manually | Verify status codes (2
 
 🎯 Goal → API behaves exactly as expected.
 
-9. Add production features
+### 9. Add production features
 
-Once core is done: Add CORS -> Rate limiting -> Helmet for security -> Swagger / Postman docs -> Dockerize for deployment
+Once core is done: `Add CORS -> Rate limiting -> Helmet for security -> Swagger / Postman docs -> Dockerize for deployment`
 
 🎯 Goal → production-ready backend.
 
-10. Deploy
+### 10. Deploy
 
-Options: Free: Render, Railway, Vercel (backend) || Paid: AWS, GCP, Azure, DigitalOcean
+Options: `Free: Render, Railway, Vercel (backend)` || `Paid: AWS, GCP, Azure, DigitalOcean`
 
 🎯 Goal → expose your API publicly.
