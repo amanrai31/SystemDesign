@@ -23,14 +23,7 @@ Actions:
 
 ### 2. Design the API endpoints
 
-For each resource, define routes in REST format:
-
-Action	Method	Endpoint	Description
-Create user	POST	/api/users	Register user
-Login user	POST	/api/login	Authenticate
-Get all stocks	GET	/api/stocks	Fetch stocks list
-Place order	POST	/api/orders	Buy/sell stock
-View portfolio	GET	/api/portfolio/:userId	User’s holdings
+For each resource, define routes in REST format: `Action	Method	Endpoint	Description` | `Create user	POST	/api/users	Register user` | `Login user	POST	/api/login	Authenticate` | `Get all stocks	GET	/api/stocks	Fetch stocks list` | `Place order	POST	/api/orders	Buy/sell stock` | `View portfolio	GET	/api/portfolio/:userId	User’s holdings`
 
 🧠 This step is just API design, no code yet.
 
