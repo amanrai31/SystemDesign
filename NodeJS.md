@@ -5,7 +5,9 @@
 
 ### 1. Understand the problem (define your resources)
 
-Before touching code, ask: “What is my app about, and what data will I expose?” Example (Stock Market App): Resources: users, stocks, orders, portfolio
+Before touching code, ask: “What is my app about, and what data will I expose?” Example (Stock Market App):
+
+**Resources:** users, stocks, orders, portfolio
 
 Actions:
 
